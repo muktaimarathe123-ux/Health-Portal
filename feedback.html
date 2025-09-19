@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Student Feedback</title>
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background: linear-gradient(to right, #89f7fe, #66a6ff);
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .container {
+        background: #fff;
+        padding: 30px;
+        border-radius: 20px;
+        width: 90%;
+        max-width: 600px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        text-align: center;
+      }
+
+      h2 {
+        text-align: center;
+        color: #2b6777;
+        margin-bottom: 20px;
+      }
+
+      textarea,
+      input[type="text"] {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 12px;
+        font-size: 15px;
+        outline: none;
+        margin-top: 12px;
+        resize: none;
+      }
+
+      textarea {
+        height: 120px;
+      }
+
+      .rating {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin: 15px 0;
+      }
+
+      .rating label {
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+        transition: transform 0.2s;
+      }
+
+      .rating label:hover {
+        transform: scale(1.05);
+      }
+
+      .selected {
+        font-weight: bold;
+        color: #2b6777;
+        text-shadow: 0 0 8px #66a6ff;
+      }
+
+      button {
+        margin-top: 20px;
+        width: 100%;
+        padding: 12px;
+        background: #ff4b56;
+        color: #fff;
+        font-size: 16px;
+        font-weight: bold;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        background: #e0434c;
+      }
+
+      .home-btn {
+        margin-top: 15px;
+        display: none; /* Hidden until feedback submitted */
+        background: #2b6777;
+      }
+
+      .home-btn:hover {
+        background: #1d4f5a;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>💬 Student Feedback</h2>
+      <form id="feedbackForm">
+        <!-- Website Rating -->
+        <label><b>Rate Our Website:</b></label>
+        <div class="rating" id="rating">
+          <label><span data-value="1">😡 Very Bad</span></label>
+          <label><span data-value="2">😟 Bad</span></label>
+          <label><span data-value="3">😐 Okay</span></label>
+          <label><span data-value="4">😊 Good</span></label>
+          <label><span data-value="5">🤩 Excellent</span></label>
+        </div>
+        <input type="hidden" id="ratingValue" name="rating" />
+
+        <!-- Feedback Box -->
+        <textarea
+          id="feedback"
+          placeholder="Write your feedback here..."
+          required
+        ></textarea>
+
+        <!-- Suggestion Box -->
+        <input
+          type="text"
+          id="suggestion"
+          placeholder="Any extra suggestions (optional)"
+        />
+
+        <button type="submit">Submit Feedback</button>
+      </form>
+
+      <!-- Back to Home Button -->
+      <button id="homeBtn" class="home-btn" onclick="goHome()">
+        ⬅ Back to Home
+      </button>
+    </div>
+
+    <script>
+      // Emoji rating system
+      const ratingSpans = document.querySelectorAll(".rating span");
+      const ratingValue = document.getElementById("ratingValue");
+      const feedbackBox = document.getElementById("feedback");
+      const homeBtn = document.getElementById("homeBtn");
+
+      ratingSpans.forEach((span) => {
+        span.addEventListener("click", function () {
+          ratingSpans.forEach((s) => s.classList.remove("selected"));
+          this.classList.add("selected");
+          ratingValue.value = this.getAttribute("data-value");
+
+          // Write emoji text into feedback box
+          feedbackBox.value = this.textContent;
+        });
+      });
+
+      // Form submit
+      document
+        .getElementById("feedbackForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          const rating = ratingValue.value || "No rating given";
+          const feedback = feedbackBox.value;
+          const suggestion = document.getElementById("suggestion").value;
+
+          alert(
+            `✅ Feedback submitted successfully!\n\nRating: ${rating}\nFeedback: ${feedback}\nSuggestion: ${
+              suggestion || "None"
+            }`
+          );
+
+          // Reset form
+          ratingValue.value = "";
+          feedbackBox.value = "";
+          document.getElementById("suggestion").value = "";
+          ratingSpans.forEach((s) => s.classList.remove("selected"));
+
+          // Show back to home button
+          homeBtn.style.display = "block";
+        });
+
+      function goHome() {
+        window.location.href = "start.html"; // Replace with your actual home page
+      }
+    </script>
+  </body>
+</html>

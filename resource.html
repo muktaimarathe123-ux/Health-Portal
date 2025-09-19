@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Wellness Hub</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #fdfcff; /* soft white background */
+        color: #333;
+      }
+
+      /* Header */
+      header {
+        background: linear-gradient(
+          135deg,
+          #a3d8f4,
+          #f8d7e3
+        ); /* cyan to pink */
+        color: #134e4a;
+        text-align: center;
+        padding: 2rem;
+      }
+      header h1 {
+        margin: 0;
+      }
+
+      /* Navigation */
+      nav {
+        background: linear-gradient(135deg, #a3d8f4, #f8d7e3);
+        padding: 0.7rem;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        border-bottom: 2px solid #8ecae6;
+      }
+      nav a {
+        color: #134e4a;
+        text-decoration: none;
+        margin: 0 1rem;
+        font-weight: bold;
+        transition: 0.3s;
+      }
+      nav a:hover {
+        text-decoration: underline;
+      }
+
+      /* Sections */
+      section {
+        padding: 2rem;
+        max-width: 1100px;
+        margin: auto;
+      }
+      section h2 {
+        color: #008080; /* teal accent */
+        margin-bottom: 1rem;
+      }
+
+      /* Cards */
+      .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+      .card {
+        flex: 1 1 calc(30% - 20px);
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        text-align: center;
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
+      }
+      .card img,
+      iframe {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+      .card h3 {
+        margin: 0.5rem;
+        color: #134e4a;
+      }
+      .card p {
+        font-size: 0.9rem;
+        color: #555;
+        padding: 0 1rem 1rem;
+      }
+
+      /* Fun Interactive Section */
+      .game-box {
+        background: linear-gradient(135deg, #a3d8f4, #f8d7e3);
+        padding: 1.5rem;
+        border-radius: 15px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        text-align: center;
+        color: #134e4a;
+      }
+      .btn {
+        padding: 10px 20px;
+        margin-top: 10px;
+        background: linear-gradient(135deg, #a3d8f4, #f8d7e3);
+        color: #134e4a;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: bold;
+        transition: transform 0.3s, opacity 0.3s;
+      }
+      .btn:hover {
+        transform: scale(1.05);
+        opacity: 0.85;
+      }
+
+      /* Footer */
+      footer {
+        text-align: center;
+        padding: 1rem;
+        background: linear-gradient(135deg, #a3d8f4, #f8d7e3);
+        color: #134e4a;
+        margin-top: 2rem;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>💙 Student ResourceHub</h1>
+      <p>Your space to relax, recharge, and re-energize ✨</p>
+    </header>
+
+    <nav>
+      <a href="#wellness">Wellness</a>
+      <a href="#relaxing">Relaxing</a>
+      <a href="#exercise">Exercise</a>
+      <a href="#nature">Nature</a>
+      <a href="#guides">Guides</a>
+      <a href="#fun">Fun Zone</a>
+    </nav>
+
+    <!-- Wellness Section -->
+    <section id="wellness">
+      <h2>🎬 Wellness Sessions</h2>
+      <div class="card-container">
+        <div class="card">
+          <img
+            src="https://picsum.photos/400/200?random=1"
+            alt="Affirmations"
+          />
+          <h3>You are what you think</h3>
+          <p>Webinar on affirmations – More than 10 mins</p>
+        </div>
+        <div class="card">
+          <img src="https://picsum.photos/400/200?random=2" alt="Confidence" />
+          <h3>Navigating college with confidence</h3>
+          <p>Motivation & guidance session</p>
+        </div>
+        <div class="card">
+          <img src="https://picsum.photos/400/200?random=3" alt="Self-love" />
+          <h3>Nurturing self-relationship</h3>
+          <p>Self-care tips & relaxation</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Relaxing Videos -->
+    <section id="relaxing">
+      <h2>🌿 Relaxing Videos</h2>
+      <div class="card-container">
+        <div class="card">
+          <iframe
+            src="https://www.youtube.com/embed/2OEL4P1Rz04"
+            frameborder="0"
+            allowfullscreen
+          ></iframe>
+          <h3>Calm Nature Scenery</h3>
+        </div>
+        <div class="card">
+          <iframe
+            src="https://www.youtube.com/embed/1ZYbU82GVz4"
+            frameborder="0"
+            allowfullscreen
+          ></iframe>
+          <h3>Deep Relaxation Music</h3>
+        </div>
+      </div>
+    </section>
+
+    <!-- Exercise Videos -->
+    <section id="exercise">
+      <h2>💪 Exercise Videos</h2>
+      <div class="card-container">
+        <div class="card">
+          <iframe
+            src="https://www.youtube.com/embed/COp7BR_Dvps?si=zlly03HJ2B2csCkl"
+            allowfullscreen
+          ></iframe>
+          <h3>Morning Yoga</h3>
+        </div>
+        <div class="card">
+          <iframe
+            src="https://www.youtube.com/embed/f1LvJUt9fIg?si=aOKXvaMAmVa6YiRZ"
+            allowfullscreen
+          ></iframe>
+          <h3>10-Minute Stretch</h3>
+        </div>
+      </div>
+    </section>
+
+    <!-- Nature Audio -->
+    <section id="nature">
+      <h2>🎵 Nature Audio</h2>
+      <div class="card-container">
+        <div class="card">
+          <h3>Rain Sounds</h3>
+          <iframe
+            src="https://open.spotify.com/embed/track/2xAuv8wBalgixP7kjWuAl8"
+            width="100%"
+            height="352"
+            frameborder="0"
+            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"
+          ></iframe>
+        </div>
+        <div class="card">
+          <h3>Forest Ambience</h3>
+          <iframe
+            src="https://open.spotify.com/embed/track/6nx6KlX7hzwK6uNwBXPgBD"
+            width="100%"
+            height="352"
+            frameborder="0"
+            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"
+          ></iframe>
+        </div>
+        <div class="card">
+          <h3>Birdsong Ambience</h3>
+          <iframe
+            src="https://open.spotify.com/embed/track/1ayKVbsT9P0gu32vweLSUn"
+            width="100%"
+            height="352"
+            frameborder="0"
+            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- Multilingual Self-Help Guides -->
+    <section id="guides">
+      <h2>🌐 Multilingual Self-Help Guides</h2>
+      <p>
+        Select your language and explore resources for common student
+        challenges.
+      </p>
+
+      <div class="card-container">
+        <!-- Academic Stress -->
+        <div class="card">
+          <h3>📘 Academic Stress</h3>
+          <label for="lang-stress">Choose Language:</label>
+          <select id="lang-stress" onchange="updateContent('stress')">
+            <option value="en">English</option>
+            <option value="hi">हिंदी</option>
+            <option value="mr">मराठी</option>
+          </select>
+          <p id="stress-text">Tips to manage workload & exam stress</p>
+          <a class="btn" id="stress-link" href="#">Read Guide</a>
+        </div>
+
+        <!-- Anxiety -->
+        <div class="card">
+          <h3>😟 Anxiety</h3>
+          <label for="lang-anxiety">Choose Language:</label>
+          <select id="lang-anxiety" onchange="updateContent('anxiety')">
+            <option value="en">English</option>
+            <option value="hi">हिंदी</option>
+            <option value="mr">मराठी</option>
+          </select>
+          <p id="anxiety-text">Breathing exercises to stay calm</p>
+          <a class="btn" id="anxiety-link" href="#">Watch Video</a>
+        </div>
+
+        <!-- Depression -->
+        <div class="card">
+          <h3>💙 Depression</h3>
+          <label for="lang-depression">Choose Language:</label>
+          <select id="lang-depression" onchange="updateContent('depression')">
+            <option value="en">English</option>
+            <option value="hi">हिंदी</option>
+            <option value="mr">मराठी</option>
+          </select>
+          <p id="depression-text">Simple ways to care for yourself</p>
+          <a class="btn" id="depression-link" href="#">Play Audio</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fun Interactive Section -->
+    <section id="fun">
+      <h2>🎮 Fun Zone – Mood Boosters</h2>
+      <div class="game-box">
+        <h3>Breathing Exercise</h3>
+        <p>Click the button and follow the breathing cycle 🌬</p>
+        <button class="btn" onclick="startBreathing()">Start Breathing</button>
+        <p id="breathText"></p>
+      </div>
+      <br />
+      <div class="game-box">
+        <h3>Mood Meter</h3>
+        <p>How do you feel right now?</p>
+        <button class="btn" onclick="setMood('😊 Happy')">😊 Happy</button>
+        <button class="btn" onclick="setMood('😐 Okay')">😐 Okay</button>
+        <button class="btn" onclick="setMood('😢 Sad')">😢 Sad</button>
+        <p id="moodResult"></p>
+      </div>
+    </section>
+
+    <footer>
+      <p>© 2025 Student Wellness Hub | Made with 💙 for students</p>
+    </footer>
+
+    <script>
+      // Breathing Exercise Animation
+      function startBreathing() {
+        let stages = ["Breathe In...", "Hold...", "Breathe Out...", "Relax..."];
+        let i = 0;
+        let breathText = document.getElementById("breathText");
+        setInterval(() => {
+          breathText.innerText = stages[i % stages.length];
+          i++;
+        }, 3000);
+      }
+
+      // Mood Meter
+      function setMood(mood) {
+        document.getElementById("moodResult").innerText =
+          "You selected: " + mood;
+      }
+      const resources = {
+        stress: {
+          en: {
+            text: "Tips to manage workload & exam stress",
+            link: "https://example.com/academic-stress-en",
+          },
+          hi: {
+            text: "पढ़ाई और परीक्षा के तनाव को संभालने के सुझाव",
+            link: "https://example.com/academic-stress-hi",
+          },
+          mr: {
+            text: "अभ्यास आणि परीक्षेचा ताण कसा हाताळावा",
+            link: "https://example.com/academic-stress-mr",
+          },
+        },
+        anxiety: {
+          en: {
+            text: "Breathing exercises to stay calm",
+            link: "https://www.youtube.com/watch?v=inpok4MKVLM",
+          },
+          hi: {
+            text: "चिंता कम करने के लिए श्वसन अभ्यास",
+            link: "https://www.youtube.com/watch?v=HiO1RjkGz6Y",
+          },
+          mr: {
+            text: "चिंता कमी करण्यासाठी श्वसनाचे व्यायाम",
+            link: "https://www.youtube.com/watch?v=Jyy0ra2WcQQ",
+          },
+        },
+        depression: {
+          en: {
+            text: "Simple ways to care for yourself",
+            link: "https://open.spotify.com/track/example",
+          },
+          hi: {
+            text: "खुद का ख्याल रखने के आसान तरीके",
+            link: "https://open.spotify.com/track/example-hindi",
+          },
+          mr: {
+            text: "स्वतःची काळजी घेण्याचे सोपे मार्ग",
+            link: "https://open.spotify.com/track/example-marathi",
+          },
+        },
+      };
+
+      function updateContent(issue) {
+        const lang = document.getElementById(`lang-${issue}`).value;
+        document.getElementById(`${issue}-text`).innerText =
+          resources[issue][lang].text;
+        document.getElementById(`${issue}-link`).href =
+          resources[issue][lang].link;
+      }
+    </script>
+  </body>
+</html>

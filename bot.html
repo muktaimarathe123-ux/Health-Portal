@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>HealMate Chatbot</title>
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(
+          to right,
+          #a8edea,
+          #fed6e3
+        ); /* cyan → pink gradient */
+      }
+
+      /* Chat Container */
+      .chat-container {
+        background: #ffffff;
+        width: 95%;
+        max-width: 500px;
+        height: 80vh;
+        display: flex;
+        flex-direction: column;
+        border-radius: 20px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        overflow: hidden;
+      }
+
+      /* Header */
+      header {
+        background: linear-gradient(
+          to right,
+          #ff4b5c,
+          #2b6777
+        ); /* pink + teal mix */
+        color: white;
+        padding: 15px;
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      /* Chat Box */
+      .chat-box {
+        flex: 1;
+        padding: 15px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        background: #fefaff; /* very soft pink background */
+      }
+
+      /* Messages */
+      .message {
+        padding: 12px 16px;
+        border-radius: 18px;
+        max-width: 75%;
+        font-size: 15px;
+        line-height: 1.4;
+        animation: fadeIn 0.3s ease;
+      }
+
+      .message.user {
+        align-self: flex-end;
+        background: #ff85a2; /* pink bubble */
+        color: #fff;
+        border-bottom-right-radius: 4px;
+      }
+
+      .message.bot {
+        align-self: flex-start;
+        background: #c9f7f5; /* cyan bubble */
+        color: #333;
+        border-bottom-left-radius: 4px;
+        border: 1px solid #b2ece9;
+      }
+
+      /* Input Area */
+      .chat-input {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        border-top: 1px solid #ddd;
+        background: #fff;
+      }
+
+      .chat-input input {
+        flex: 1;
+        padding: 14px 45px 14px 40px;
+        border: 1px solid #ccc;
+        border-radius: 25px;
+        font-size: 15px;
+        outline: none;
+      }
+
+      /* Attachment Button */
+      .attach-btn {
+        position: absolute;
+        margin-left: 15px;
+        font-size: 18px;
+        color: #2b6777;
+        cursor: pointer;
+      }
+
+      /* Send Button */
+      .send-btn {
+        position: absolute;
+        right: 25px;
+        font-size: 18px;
+        color: white;
+        background: #ff4b5c; /* strong pink */
+        border-radius: 50%;
+        padding: 8px 12px;
+        cursor: pointer;
+        border: none;
+        transition: 0.3s;
+      }
+      .send-btn:hover {
+        background: #e0434c;
+      }
+
+      /* Input Wrapper */
+      .input-wrapper {
+        position: relative;
+        flex: 1;
+      }
+
+      /* Animation */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="chat-container">
+      <!-- Header -->
+      <header>🤖 HealMate</header>
+
+      <!-- Chat Messages -->
+      <div id="chat-box" class="chat-box">
+        <div class="message bot">
+          Hello 👋 I'm HealMate. How are you feeling today?
+        </div>
+      </div>
+
+      <!-- Input -->
+      <div class="chat-input">
+        <div class="input-wrapper">
+          <span class="attach-btn">📎</span>
+          <input
+            type="text"
+            id="user-input"
+            placeholder="Type your message here..."
+          />
+          <button class="send-btn" onclick="sendMessage()">➤</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Predefined bot replies
+      const responses = {
+        hi: ["Hello there! 🌸", "Hi! How are you feeling today?"],
+        sad: [
+          "I'm sorry to hear that 💙. Do you want to talk about it?",
+          "Sometimes feeling sad is okay 🌧, I'm here with you.",
+          "Sending you a virtual hug 🤗",
+        ],
+        happy: [
+          "Yay! 🎉 I'm so glad you're happy!",
+          "That’s wonderful 😊 keep smiling!",
+          "Happiness is contagious 💛 thanks for sharing!",
+        ],
+        stress: [
+          "Stress can be tough 😔. Want me to guide you through a quick breathing exercise?",
+          "I hear you 💚 Stress happens, but we can handle it together.",
+          "Let's try a small relaxation activity 🌿",
+        ],
+        default: [
+          "Thanks for sharing 💚",
+          "I’m listening 👂 tell me more!",
+          "Would you like to take a quick stress test?",
+        ],
+      };
+
+      function sendMessage() {
+        let input = document.getElementById("user-input");
+        let chatBox = document.getElementById("chat-box");
+        let text = input.value.trim().toLowerCase();
+
+        if (text !== "") {
+          // User message
+          let userMsg = document.createElement("div");
+          userMsg.className = "message user";
+          userMsg.textContent = input.value;
+          chatBox.appendChild(userMsg);
+
+          // Bot "typing..."
+          let typingMsg = document.createElement("div");
+          typingMsg.className = "message bot";
+          typingMsg.textContent = "⏳ typing...";
+          chatBox.appendChild(typingMsg);
+          chatBox.scrollTop = chatBox.scrollHeight;
+
+          // Bot response
+          setTimeout(() => {
+            chatBox.removeChild(typingMsg);
+
+            let botMsg = document.createElement("div");
+            botMsg.className = "message bot";
+
+            // Choose response
+            if (text.includes("hi") || text.includes("hello")) {
+              botMsg.textContent =
+                responses.hi[Math.floor(Math.random() * responses.hi.length)];
+            } else if (text.includes("sad")) {
+              botMsg.textContent =
+                responses.sad[Math.floor(Math.random() * responses.sad.length)];
+            } else if (text.includes("happy")) {
+              botMsg.textContent =
+                responses.happy[
+                  Math.floor(Math.random() * responses.happy.length)
+                ];
+            } else if (text.includes("stress")) {
+              botMsg.textContent =
+                responses.stress[
+                  Math.floor(Math.random() * responses.stress.length)
+                ];
+            } else {
+              botMsg.textContent =
+                responses.default[
+                  Math.floor(Math.random() * responses.default.length)
+                ];
+            }
+
+            chatBox.appendChild(botMsg);
+            chatBox.scrollTop = chatBox.scrollHeight;
+          }, 1000);
+
+          input.value = "";
+        }
+      }
+    </script>
+  </body>
+</html>

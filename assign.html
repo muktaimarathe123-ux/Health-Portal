@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Student Wellness Check</title>
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        margin: 0;
+        background: linear-gradient(
+          to right,
+          #a8edea,
+          #fed6e3
+        ); /* cyan → pink */
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .container {
+        background: #fff;
+        width: 95%;
+        max-width: 850px;
+        padding: 25px 30px;
+        border-radius: 20px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      h1 {
+        text-align: center;
+        color: #2b6777;
+        margin-bottom: 20px;
+      }
+
+      /* ✅ Force exactly 3 columns */
+      .menu {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        justify-items: center;
+      }
+
+      .menu button {
+        background: linear-gradient(
+          to right,
+          #ff85a2,
+          #2b6777
+        ); /* pink + teal */
+        color: #fff;
+        border: none;
+        border-radius: 15px;
+        padding: 15px 25px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+        width: 100%;
+        max-width: 220px;
+        text-align: center;
+      }
+
+      .menu button:hover {
+        background: linear-gradient(to right, #ff4b5c, #1e4d5a);
+      }
+
+      .quiz {
+        display: none;
+        margin-top: 20px;
+      }
+
+      .question {
+        margin: 20px 0;
+        padding: 15px;
+        border-left: 5px solid #a8edea; /* cyan highlight */
+        background: #fef6f9; /* very light pink */
+        border-radius: 10px;
+      }
+
+      .options {
+        margin-top: 10px;
+      }
+
+      label {
+        display: block;
+        margin: 6px 0;
+        cursor: pointer;
+      }
+
+      button.submit {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        margin-top: 20px;
+        border: none;
+        border-radius: 25px;
+        background: #ff4b5c; /* strong pink */
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      button.submit:hover {
+        background: #d63447;
+      }
+
+      .result {
+        margin-top: 25px;
+        padding: 20px;
+        border-radius: 15px;
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+        display: none;
+      }
+
+      .low {
+        background: #d9fdd3;
+        color: #2b6777;
+      }
+
+      .moderate {
+        background: #fff3cd;
+        color: #444;
+      }
+
+      .high {
+        background: #f8d7da;
+        color: #ff4b56;
+      }
+
+      .back {
+        margin-top: 20px;
+        background: #2b6777; /* teal */
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        padding: 10px 15px;
+        cursor: pointer;
+      }
+
+      .back:hover {
+        background: #1e4d5a;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🌸 Student Wellness Check</h1>
+
+      <!-- Main Menu -->
+      <div id="menu" class="menu">
+        <button onclick="openQuiz('anxiety')">Anxiety</button>
+        <button onclick="openQuiz('academic')">Academic Pressure</button>
+        <button onclick="openQuiz('depression')">Depression</button>
+        <button onclick="openQuiz('addiction')">Addiction</button>
+        <button onclick="openQuiz('stress')">Stress</button>
+        <button onclick="openQuiz('loneliness')">Loneliness</button>
+      </div>
+
+      <!-- Quiz Section -->
+      <div id="quizSection" class="quiz">
+        <form id="quizForm"></form>
+        <button type="button" class="submit" onclick="calculateResult()">
+          Submit
+        </button>
+        <div id="result" class="result"></div>
+        <button class="back" onclick="goBack()">⬅ Back to Menu</button>
+      </div>
+    </div>
+
+    <script>
+      const quizzes = {
+        anxiety: {
+          questions: [
+            "Feeling nervous, anxious, or on edge?",
+            "Not being able to stop or control worrying?",
+            "Worrying too much about different things?",
+            "Trouble relaxing?",
+            "Being so restless that it's hard to sit still?",
+            "Becoming easily annoyed or irritable?",
+            "Feeling afraid, as if something awful might happen?",
+          ],
+        },
+        depression: {
+          questions: [
+            "Little interest or pleasure in doing things?",
+            "Feeling down, depressed, or hopeless?",
+            "Trouble falling or staying asleep, or sleeping too much?",
+            "Feeling tired or having little energy?",
+            "Poor appetite or overeating?",
+            "Feeling bad about yourself — or that you are a failure?",
+            "Trouble concentrating on things, such as reading or watching TV?",
+            "Moving or speaking slowly — or being fidgety/restless?",
+            "Thoughts that you would be better off dead, or of hurting yourself?",
+          ],
+        },
+        academic: {
+          questions: [
+            "Feeling overwhelmed by academic workload?",
+            "Difficulty concentrating on studies due to stress?",
+            "Trouble meeting deadlines or assignments?",
+            "Comparing yourself negatively with classmates?",
+            "Losing interest in studies because of pressure?",
+          ],
+        },
+        addiction: {
+          questions: [
+            "Spending too much time on gaming, social media, or internet?",
+            "Using substances (alcohol, caffeine, smoking) more than intended?",
+            "Neglecting responsibilities due to addictive habits?",
+            "Feeling restless or irritated when unable to engage in the habit?",
+            "Trying to cut down but failing repeatedly?",
+          ],
+        },
+        stress: {
+          questions: [
+            "Feeling overwhelmed with daily tasks?",
+            "Trouble sleeping due to overthinking?",
+            "Feeling easily irritated or short-tempered?",
+            "Struggling to manage multiple responsibilities?",
+            "Difficulty relaxing or calming down?",
+          ],
+        },
+        loneliness: {
+          questions: [
+            "Feeling left out frequently?",
+            "Lacking companionship or close relationships?",
+            "Feeling isolated from people around you?",
+            "Thinking no one truly understands you?",
+            "Wishing for more people to spend time with?",
+          ],
+        },
+      };
+
+      let currentQuiz = "";
+
+      function openQuiz(type) {
+        currentQuiz = type;
+        document.getElementById("menu").style.display = "none";
+        const quizSection = document.getElementById("quizSection");
+        quizSection.style.display = "block";
+
+        let form = document.getElementById("quizForm");
+        form.innerHTML = "";
+
+        quizzes[type].questions.forEach((q, index) => {
+          let div = document.createElement("div");
+          div.classList.add("question");
+          div.innerHTML = `
+          <p>${index + 1}. ${q}</p>
+          <div class="options">
+            <label><input type="radio" name="q${index}" value="0"> Not at all</label>
+            <label><input type="radio" name="q${index}" value="1"> Several days</label>
+            <label><input type="radio" name="q${index}" value="2"> More than half the days</label>
+            <label><input type="radio" name="q${index}" value="3"> Nearly every day</label>
+          </div>
+        `;
+          form.appendChild(div);
+        });
+      }
+
+      function calculateResult() {
+        let form = document.getElementById("quizForm");
+        let inputs = form.querySelectorAll("input[type=radio]:checked");
+        let totalQuestions = quizzes[currentQuiz].questions.length;
+
+        if (inputs.length < totalQuestions) {
+          alert("⚠ Please answer all questions before submitting.");
+          return;
+        }
+
+        let total = 0;
+        inputs.forEach((i) => (total += parseInt(i.value)));
+
+        let resultBox = document.getElementById("result");
+        resultBox.style.display = "block";
+
+        if (total <= totalQuestions * 0.33) {
+          resultBox.className = "result low";
+          resultBox.textContent =
+            "✅ Low symptoms detected. You're managing well. Keep taking care of yourself 🌱";
+        } else if (total <= totalQuestions * 0.66) {
+          resultBox.className = "result moderate";
+          resultBox.textContent =
+            "⚖ Moderate level: You may be experiencing some challenges. Consider healthy coping strategies or talking with a peer/support group 💚";
+        } else {
+          resultBox.className = "result high";
+          resultBox.textContent =
+            "🚨 High symptoms detected: It may be helpful to talk to a counselor or mental health professional ❤";
+        }
+      }
+
+      function goBack() {
+        document.getElementById("quizSection").style.display = "none";
+        document.getElementById("menu").style.display = "grid";
+        document.getElementById("result").style.display = "none";
+      }
+    </script>
+  </body>
+</html>

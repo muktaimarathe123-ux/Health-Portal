@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile | Mental Wellness Portal</title>
+    <style>
+      body {
+        font-family: Poppins, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(to right, #a8edea, #fed6e3);
+      }
+      .profile-box {
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 350px;
+      }
+      h2 {
+        color: #2b6777;
+      }
+      p {
+        font-size: 1rem;
+        margin: 0.5rem 0;
+      }
+      .logout-btn {
+        background: #ff4b5c;
+        color: white;
+        border: none;
+        padding: 0.7rem 1.5rem;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-top: 1rem;
+      }
+      .logout-btn:hover {
+        background: #d63447;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="profile-box">
+      <h2>User Profile</h2>
+      <p><b>ID:</b> <span id="userId"></span></p>
+      <p><b>Email:</b> <span id="email"></span></p>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+
+    <script>
+      let user = JSON.parse(localStorage.getItem("currentUser"));
+      if (user) {
+        document.getElementById("userId").textContent = user.id;
+        document.getElementById("email").textContent = user.email;
+      } else {
+        alert("No user logged in!");
+        window.location.href = "login.html";
+      }
+      function logout() {
+        localStorage.removeItem("currentUser");
+        window.location.href = "login.html";
+      }
+    </script>
+  </body>
+</html>

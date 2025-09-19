@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Peer Forum | Mental Wellness Portal</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap"
+      rel="stylesheet"
+      i
+      want
+      the
+      boxes
+      of
+      activites
+      to
+      look
+      like
+      the
+      AI
+      chat
+      and
+      all
+      colour
+      but
+      background
+      same
+    />
+    <style>
+      body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(
+          135deg,
+          #a3d8f4,
+          #f8d7e3
+        ); /* cyan-pink gradient (same as bot) */
+        color: #333;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      header {
+        background: linear-gradient(
+          135deg,
+          #8ad5fd,
+          #f1aac4
+        ); /* Match chatbot header style */
+        color: #fff;
+        padding: 1rem 2rem;
+        text-align: center;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        font-weight: bold;
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 1.8rem;
+      }
+
+      .forum-container {
+        flex: 1;
+        padding: 2rem;
+        max-width: 1000px;
+        margin: auto;
+      }
+
+      .section-title {
+        font-size: 1.6rem;
+        font-weight: bold;
+        color: #134e4a;
+        margin: 1.5rem 0 1rem 0;
+        padding-bottom: 5px;
+        display: inline-block;
+        border: none; /* removed red underline */
+      }
+
+      /* Peer Discussion Box */
+      .post-form {
+        background: white;
+        padding: 1rem;
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        margin-bottom: 2rem;
+      }
+
+      .post-form textarea {
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        resize: none;
+        font-family: "Poppins", sans-serif;
+      }
+
+      .post-form button {
+        margin-top: 10px;
+        background: linear-gradient(135deg, #a3d8f4, #f8d7e3);
+        color: #134e4a;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+        font-weight: bold;
+      }
+
+      .post-form button:hover {
+        opacity: 0.85;
+      }
+
+      /* Activities in Grid */
+      .activities-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+      }
+
+      .activity {
+        background: linear-gradient(135deg, #a3d8f4, #f8d7e3);
+        padding: 1.2rem;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        transition: transform 0.3s;
+        color: #134e4a;
+      }
+
+      .activity:hover {
+        transform: translateY(-5px);
+      }
+
+      .activity h3 {
+        margin: 0 0 10px 0;
+        color: #134e4a;
+      }
+
+      .activity p {
+        margin: 0;
+        font-size: 0.95rem;
+      }
+
+      footer {
+        background: linear-gradient(135deg, #a3d8f4, #f8d7e3);
+        color: #134e4a;
+        text-align: center;
+        padding: 1rem;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>🌸 Peer Forum</h1>
+      <p>Peer-to-Peer Support | Safe & Supportive Space</p>
+    </header>
+
+    <div class="forum-container">
+      <!-- Peer Discussion Section -->
+      <h2 class="section-title">💬 Peer Discussion</h2>
+      <div class="post-form">
+        <h3>✍ Share Something</h3>
+        <textarea
+          rows="3"
+          placeholder="Write your thoughts, questions, or experiences..."
+        ></textarea>
+        <button>Post</button>
+      </div>
+
+      <!-- Upcoming Activities Section -->
+      <h2 class="section-title">📅 Upcoming Activities</h2>
+      <div class="activities-grid">
+        <div class="activity">
+          <h3>🌱 Stress-Free Study Tips (Peer Volunteers)</h3>
+          <p>
+            Group study & relaxation session this Friday at 5 PM in the library
+            hall. Share techniques and reduce exam stress 💡
+          </p>
+        </div>
+
+        <div class="activity">
+          <h3>🧘 Fun & Relaxing Activities</h3>
+          <p>
+            Participate in yoga, art therapy, and meditation sessions every
+            weekend to recharge your mind and body.
+          </p>
+        </div>
+
+        <div class="activity">
+          <h3>💻 Mental Health Webinar</h3>
+          <p>
+            Expert-led session on stress management & emotional well-being. 10th
+            October, 6 PM 🖥️
+          </p>
+        </div>
+
+        <div class="activity">
+          <h3>🎉 Awareness Campaign (Peer Volunteers)</h3>
+          <p>
+            Mental Health Awareness Walk on 15th October. Let’s spread
+            positivity together 🌸
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>🌸 Moderated by College Peer Volunteers | Guided by Faculty Mentors</p>
+    </footer>
+  </body>
+</html>
