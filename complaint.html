@@ -57,15 +57,6 @@
       button:hover {
         background: #444;
       }
-
-      .output {
-        margin-top: 20px;
-        padding: 15px;
-        background: #f7faff;
-        border-left: 5px solid #66a6ff;
-        border-radius: 12px;
-        display: none;
-      }
     </style>
   </head>
   <body>
@@ -79,7 +70,6 @@
         ></textarea>
         <button type="submit">Submit Complaint</button>
       </form>
-      <div id="output" class="output"></div>
     </div>
 
     <script>
@@ -88,11 +78,15 @@
         .addEventListener("submit", function (event) {
           event.preventDefault();
           let complaintText = document.getElementById("complaint").value;
-          let output = document.getElementById("output");
-          output.style.display = "block";
-          output.textContent =
-            "📢 We’ve received your complaint: " + complaintText;
-          document.getElementById("complaint").value = "";
+
+          // Show popup message
+          alert(
+            "✅ Complaint submitted successfully!\n\nYour complaint: " +
+              complaintText
+          );
+
+          // Redirect to home page (index.html)
+          window.location.href = "index.html";
         });
     </script>
   </body>
