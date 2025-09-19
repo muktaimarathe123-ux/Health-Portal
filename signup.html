@@ -63,26 +63,24 @@
     </div>
 
     <script>
-      document
-        .getElementById("signupForm")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
+      function signup() {
+        let role = document.getElementById("role").value;
+        let email = document.getElementById("email").value;
+        let password = document.getElementById("password").value;
 
-          const email = document.getElementById("email").value;
-          const role = document.querySelector(
-            'input[name="role"]:checked'
-          ).value;
+        if (!role || !email || !password) {
+          alert("All fields are required!");
+          return;
+        }
 
-          // Generate anonymous ID
-          const userId = "Anonymous-" + Math.floor(Math.random() * 10000);
+        let userId = "User" + Math.floor(1000 + Math.random() * 9000);
+        let user = { id: userId, email, password, role };
 
-          // Store user in localStorage
-          const newUser = { id: userId, email: email, role: role };
-          localStorage.setItem("currentUser", JSON.stringify(newUser));
+        localStorage.setItem("currentUser", JSON.stringify(user));
 
-          // Redirect to home
-          window.location.href = "index.html";
-        });
+        alert("Signup successful! Your ID is " + userId);
+        window.location.href = "index.html"; // Redirect to home
+      }
     </script>
   </body>
 </html>
